@@ -6,6 +6,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 ## it is used to craete a class variable
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
 
 @dataclass #is a decorator that is used to automatically generate special methods for the class, such as __init__(), __repr__(), and __eq__(). It is used to create classes that are primarily used to store data, without having to write boilerplate code for these methods.
 class DataIngestionConfig:
@@ -36,8 +38,11 @@ class Dataingestion:
             return (self.ingestion_config.train_data_path,
                     self.ingestion_config.test_data_path)
         except Exception as e:
-            raise Customexception(e, sys)
+            raise CustomException(e, sys)
 
 if __name__ == "__main__":
     obj = Dataingestion()
-    obj.intiate_data_ingestion()
+    train_data,test_data=obj.intiate_data_ingestion()
+
+    data_transformation=DataTransformation()
+    data_transformation.initiate_data_transformation(train_data,test_data)
