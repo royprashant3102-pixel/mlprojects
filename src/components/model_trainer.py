@@ -106,7 +106,7 @@ class ModelTrainer:
                 X_test=X_test,
                 y_test=y_test,
                 models=models,
-                params=params
+                param=params
             )
 
             ## To get best model score from dict
